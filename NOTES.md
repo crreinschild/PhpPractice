@@ -23,9 +23,25 @@ it's available.
 
 ## Part 1: Tailwind CSS 
 
+### Setup
+
 1) Follow the installation steps from the [Tailwind CSS Larvel-Vite Install docs](https://tailwindcss.com/docs/installation/framework-guides/laravel/vite)
    1) NOTE: It appears that Tailwind CSS is at least partially set up in the starting code; @Joe was this intentional?
 2) Add `@vite('resources/css/app.css')` to `welcome.blade.php` to apply the css file. (re: last step of the above link)
+
+### Layout
+
+It appears that it's generally best practice to define your layouts separately from the individual pages for consistency
+and reuse. Laravel seems to have 2 main options, component and inheritance (classic) based. 
+
+Since I have limited time, I attempt to create a basic layout template that the welcome page will inherit from. This
+layout will be where I create the navigation menu and footer.
+
+I followed the documentation on [Blade Layouts](https://laravel.com/docs/12.x/blade#layouts-using-template-inheritance) 
+to create a default layout file. From here I will create the navigation menu and footer.
+
+### Navigation Menu
+
 
 
 ## Issues
