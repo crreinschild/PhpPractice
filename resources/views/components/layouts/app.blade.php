@@ -3,7 +3,7 @@
     <head>
         @include('partials.head')
     </head>
-    <body>
+    <body class="bg-">
         <x-layouts.app.navigation />
         {{ $slot }}
         <x-layouts.app.footer />

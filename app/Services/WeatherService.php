@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\WeatherReport;
+use App\Models\WeatherLocation;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -25,14 +26,16 @@ class WeatherService
         95 => 'Thunderstorms',
         96 => 'Thunderstorms with slight hail', 99 => 'Thunderstorms with heavy hail'];
 
-    public function getWeather($location) : WeatherReport
+    public function getWeather(WeatherLocation $location) : WeatherReport
     {
+        error_log(json_encode($location));
         $response = Http::get($this->url, [
-            'latitude' => $location['latitude'],
-            'longitude' => $location['longitude'],
+            'latitude' => $location->latitude,
+            'longitude' => $location->longitude,
             "current" => ["temperature_2m", "relative_humidity_2m", "wind_speed_10m", "weather_code"]
         ]);
 
+        error_log(json_encode($response->json()));
         if ($response->successful()) {
             $data = $response->json('current');
             $temperature =  $data['temperature_2m'];
@@ -47,5 +50,27 @@ class WeatherService
             return new WeatherReport($location, 0, 0, 0, "Unknown");
         }
 
+    }
+
+    public function searchLocation($name) {
+        // TODO: move search url to a const/config
+        $response = Http::get("https://geocoding-api.open-meteo.com/v1/search", [
+            'name' => $name,
+            'count' => 10,
+        ]);
+
+        if ($response->successful()) {
+            $data = $response->json('results');
+
+            $locs = [];
+            foreach ($data as $location) {
+                error_log($location['name']. $location['country']. $location['latitude']. $location['longitude']);
+                $locs[$location['id']] = new WeatherLocation($location['id'], $location['name'], $location['country'], $location['latitude'], $location['longitude']);
+            }
+            return $locs;
+        } else {
+            // learn to handle errors
+            return null;
+        }
     }
 }
