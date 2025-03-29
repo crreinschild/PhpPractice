@@ -1,5 +1,25 @@
 # Notes
 
+## Usage
+
+Follow the steps in the README.md to launch the application.
+
+### Usage Notes
+
+I was unable to completely finish all the assignments, but I tried to leave in as much of the working code as possible.
+
+Things that are working:
+
+- The Navigation Bar is functional and switches to a mobile-friendly layout when the screen width is narrow.
+- The Footer is functional as well
+- The Search form is functional, but the results are in an unstyled dropdown box.
+  - The dropdown select box contains the 10 most relevant locations
+  - WARNING: The app curently crashes when attempting to select a location
+    - This is because I couldn't figure out how to maintain state between generating the list and selecting the item
+    - I attempted to use a PHP global variable, but I was unsuccessful in getting that working
+- I missused my time and was unable to get a design/style for the weather data
+- In order to load the weather data for the hardcoded location (Raleigh, NC), you need to click the Refresh button
+
 ## Tools
 
 Here are a few notes about my local dev setup
@@ -89,9 +109,12 @@ The WeatherService is registered to the container via the WeatherServiceProvider
 
 ## Livewire & Search
 
-I gave this an early start. I generated a new laravel app with the livewire startup kit to use as a reference.
+I was able to create the search bar and get search results, but I struggled with passing data between the search and
+display components. In retrospect, I should have created a wrapper component that contained both the search and display
+subcomponents.
 
-I'll also leave the example counter livewire component around for reference.
+In the end, I was able to get the components working separately, but was unable to get them to work together in the
+final hours of my alotted 24 hours.
 
 ## Issues
 
@@ -170,3 +193,17 @@ I'm going to see if I can get the search thing working.
 I ran out of time so I'm going to try to get as much documented as possible. I got search working, but you need to 
 open the select dropdown to see the results.  Unfortunately there's an issue with selecting the location.
 Just to show the weather request is working, I left the Refresh button in the UI to click for Raleigh weather.
+
+### Final Reflection
+
+I miss-managed my time. I spent too much time focusing on single problems until they were solved. Instead, I should have
+taken a step back after spending 30-60 minutes on each task, and then moved on to the next task. I also got too focused
+on the UI and making it look decent, when I should have focused on getting the functionality working first.
+
+In a real-world scenario, I would have spent less time trying to solve the problems myself and instead asked for help
+from someone more familiar with laravel/tailwind/livewire. While I like to solve it myself, I appreciate the feedback 
+from experienced engineers on where I should be looking. On at least 3 occasions, I spent a lot of time learning about
+a feature, only to find that it is an "old way" of doing things, or no longer best practice.
+
+All in all, I enjoyed the challenge and I learned a lot.
+Please enjoy my very first PHP/Laravel project.
