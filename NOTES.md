@@ -55,9 +55,17 @@ branch.
 
 TODO: Clean up the navbar and make it more reusable.
 
+### Weather Dashboard Layout
+
+My plan is to create a basic gauge component to show the numbers in squares that can be laid out in a grid, with flex
+layout so they can rearrange themselves on smaller (mobile) screens.
+
+But I think I want to get the data from the API first.
+
 ### Footer
 
-Not started yet. I wanted to save the navbar first.
+Following my quest to get through these UI tasks as quickly as possible, I once again found and adapted a design from a
+website. This time I used a footer from [Pagedone.io: Tailwind CSS Footer](https://pagedone.io/blocks/marketing/footer).
 
 ## Weather API
 

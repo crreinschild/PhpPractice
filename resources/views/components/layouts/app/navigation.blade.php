@@ -1,3 +1,4 @@
+<!-- Adapted from https://tailwindcss.com/plus/ui-blocks/application-ui/navigation/navbars -->
 <nav x-data="{ open: false }"  class="bg-gray-800">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">

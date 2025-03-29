@@ -6,5 +6,6 @@
     <body>
         <x-layouts.app.navigation />
         {{ $slot }}
+        <x-layouts.app.footer />
     </body>
 </html>
