@@ -129,3 +129,8 @@ The good news is that I'm learning a lot in a very short period of time.
 
 I don't think I'm going to get to all the cool stuff I wanted to do, like TDD, and using docker & dev containers for 
 local dev environment setup.
+
+### 7 Hour Check-in
+
+I got a semi-functional UI, I need to switch over to the API. I'm going to try to get that working before bed. If I can
+do that, then I'll at least feel a little bit better about my submission.
