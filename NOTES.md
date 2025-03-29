@@ -40,8 +40,35 @@ layout will be where I create the navigation menu and footer.
 I followed the documentation on [Blade Layouts](https://laravel.com/docs/12.x/blade#layouts-using-template-inheritance) 
 to create a default layout file. From here I will create the navigation menu and footer.
 
+#### Follow-up on Layouts
+
+I went back to using Component-based blade layouts, especially since I started looking at livewire components already.
+
+TODO: Create a page layout so that I can create a consistent, repeatable layout for future pages.
+
 ### Navigation Menu
 
+I am struggling with the various examples and starter kits to make pretty navigation menus. I found that I spent way too
+much time on this one, so for the time being, I adapted the free navbar example from [Tailwind Plus](https://tailwindcss.com/plus/ui-blocks/application-ui/navigation/navbars)
+by removing the bits I didn't need, and using the example AlpineJS from my abandoned `crreinschild/tailwind-breeze`
+branch.
+
+TODO: Clean up the navbar and make it more reusable.
+
+### Footer
+
+Not started yet. I wanted to save the navbar first.
+
+## Weather API
+
+I created a livewire component for the weather. It currently just generates a random temperature. I will switch to
+fetching the weather for a single location for now.
+
+## Livewire & Search
+
+I gave this an early start. I generated a new laravel app with the livewire startup kit to use as a reference.
+
+I'll also leave the example counter livewire component around for reference.
 
 ## Issues
 
@@ -81,3 +108,16 @@ terminal.
 I tried to use Laravel Breeze to get a basic (decent looking) UI, in particular since the generated sample code
 included a serviceable navigation menu. However, I did not realize that it was falling out of favor and not necessarily
 compatible with never versions of Laravel & Tailwind.
+
+## Self-reflections
+
+### 4-6 Hour Check-in
+
+At 4-6 hours in, I found myself diving into rabbit holes, wanting everything to look good and be perfect when I should
+have focused on functionality before prettiness. I could have started with the ugliest UI, so I could jump into the API
+and livewire stuff earlier, then gone back.  That's what I'm doing now, but I should have done that at least 2 hours.
+
+The good news is that I'm learning a lot in a very short period of time.
+
+I don't think I'm going to get to all the cool stuff I wanted to do, like TDD, and using docker & dev containers for 
+local dev environment setup.
