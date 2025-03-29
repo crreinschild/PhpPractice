@@ -152,3 +152,7 @@ do that, then I'll at least feel a little bit better about my submission.
 The HTTP Request to get a basic weather report is working. Next step is to create a new livewire component to handle the
 WeatherSearchService. Also, I would like to create that WeatherGauge component to better display the weather data in an
 easy-to-read and flexible layout. I also want to add error handling. 
+
+### Morning Check-in
+
+I'm going to see if I can get the search thing working.
