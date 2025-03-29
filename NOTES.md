@@ -69,8 +69,15 @@ website. This time I used a footer from [Pagedone.io: Tailwind CSS Footer](https
 
 ## Weather API
 
-I created a livewire component for the weather. It currently just generates a random temperature. I will switch to
-fetching the weather for a single location for now.
+I have a Weather livewire component that gets a WeatherService instance. The WeatherService handles the API call to the
+OpenWeather API. The Weather component is hardcoded to a single location for the time being. I have not yet made the
+component call to get the weather data on load, but instead it's hooked up to a button click.
+
+The WeatherService returns the data via a WeatherReport model that should make it easier to abstract the type of weather
+data that may be gathered. Though I'm not married to that approach; maybe I'll create a Request object where the live
+component can request any combination of data, and have those requested fields loaded/mapped to a response object.
+
+The WeatherService is registered to the container via the WeatherServiceProvider.
 
 ## Livewire & Search
 
@@ -117,6 +124,11 @@ I tried to use Laravel Breeze to get a basic (decent looking) UI, in particular 
 included a serviceable navigation menu. However, I did not realize that it was falling out of favor and not necessarily
 compatible with never versions of Laravel & Tailwind.
 
+### Logging
+
+I have not yet looked deeply into logging configuration. In order to save time when debugging, I found the error_log()
+function. I would love to get logging working correctly so I can add proper logging to the code.
+
 ## Self-reflections
 
 ### 4-6 Hour Check-in
@@ -134,3 +146,9 @@ local dev environment setup.
 
 I got a semi-functional UI, I need to switch over to the API. I'm going to try to get that working before bed. If I can
 do that, then I'll at least feel a little bit better about my submission.
+
+### Midnight Check-in
+
+The HTTP Request to get a basic weather report is working. Next step is to create a new livewire component to handle the
+WeatherSearchService. Also, I would like to create that WeatherGauge component to better display the weather data in an
+easy-to-read and flexible layout. I also want to add error handling. 
