@@ -43,7 +43,6 @@ to create a default layout file. From here I will create the navigation menu and
 ### Navigation Menu
 
 
-
 ## Issues
 
 Here are a list of challenges I encountered and my resolution.
@@ -76,3 +75,9 @@ the easiest way to fix this is to create a `database.sqlite` file, and then
 When it says "run `npm run dev` to compile assets, it turns out that you can (and maybe should) leave it running while
 also running `php artisan serve`. I suspect there is a way to run both, but for the time being, I run each in a separate
 terminal.
+
+### Laravel Breeze 
+
+I tried to use Laravel Breeze to get a basic (decent looking) UI, in particular since the generated sample code
+included a serviceable navigation menu. However, I did not realize that it was falling out of favor and not necessarily
+compatible with never versions of Laravel & Tailwind.
