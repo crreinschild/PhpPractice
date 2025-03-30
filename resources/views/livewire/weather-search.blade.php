@@ -1,7 +1,5 @@
 <div>
-    {{-- Because she competes with no one, no one can compete with her. --}}
-
-
+    <!-- Sourced from https://flowbite.com/docs/forms/search-input/ -->
     <form wire:submit="search" class="max-w-md mx-auto">
         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
         <div class="relative">
@@ -15,6 +13,7 @@
         </div>
     </form>
 
+    <!-- -->
     <div class="form-group row">
         <label for="locations" class="col-md-4">Work in progress, please search and then select the result from the dropdown</label>
         <div class="col-md-6">
