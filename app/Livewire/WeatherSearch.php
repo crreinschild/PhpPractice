@@ -5,6 +5,32 @@ namespace App\Livewire;
 use App\Services\WeatherService;
 use Livewire\Component;
 
+/**
+ * WeatherSearch Component
+ *
+ * Handles the logic for searching for a location to get the weather forecast for. When a user sets the search text,
+ * it will fetch a list of locations close in name to the specified text. The desired location can then be selected.
+ *
+ * ASSESSMENT NOTE: The search function of this component is functioning as expected, however, when selecting the
+ * location, it would appear that it instantiates a new WeatherSearch component instead of resolving the original
+ * instance; the one that contains the list of locations. I originally tried to pass the full location object by binding
+ * the selected location on the <select> element, but I learned very quickly that Livewire only supports simple (string)
+ * values via this binding. I did not have the heart to attempt to serialize the object into a base64 json object.
+ * I, instead, followed up by attempting to pass the ID of the location, but to my dismay, there was no list waiting for
+ * me. Ultimately, even if I got it working, the intent is to pass the selected location to the Weather component, and
+ * I don't know what the correct way to do that is. In hindsight, I should have the Weather component be a parent, and
+ * make the Search and the set of weather graphs and gauges be children.
+ * TODO: Find the best practice for passing data/state between Livewire components.
+ *   I bet it's something like creating a session-scoped data service to broker the data (maybe backed by a database to
+ *   assist in caching and persistence).
+ *
+ * @package App\Livewire
+ *
+ * @property string $searchText The text to search locations by. The results should be similar in name.
+ * @property array $locations The list of locations returned from the search.
+ * @property int|null $selected The location id of the selected location from the list.
+ * @property WeatherService $weather The weather service instance used to fetch location data.
+ */
 class WeatherSearch extends Component
 {
     public $searchText;
@@ -15,6 +41,14 @@ class WeatherSearch extends Component
 
     protected WeatherService $weather;
 
+    /**
+     * Function to handle the event that a user has selected a location from the list.
+     * Read the value of the `selected` property, and pull the location with the same id in the array.
+     *
+     * TODO: Bug: Update function to check that locations is not null
+     * TODO: Find out why the location list is null (hint, this is likely a new instance when the function is called)
+     * TODO: Find out why `updatedSelected` didn't work; likely because `selected` was not updated in this instance.
+     */
     public function selectionChanged() {
         if ($this->selected) {
             error_log(json_encode($this->locations));
@@ -23,32 +57,55 @@ class WeatherSearch extends Component
         }
     }
 
+    /**
+     * Constructor to initialize the weather service and locations.
+     *
+     * @param WeatherService $weather The weather service instance.
+     * @param array $locations The list of locations to search from. NOTE: This likely doesn't help as the code that
+     *   instantiates this component runs before any search is ever run. TODO: remove
+     */
     public function mount(WeatherService $weather, $locations = [])
     {
         $this->locations = $locations;
         $this->weather = $weather;
     }
 
+    /**
+     * Boot method to set the weather service on each request.
+     * TODO: Verify if this is needed if the mount method is already loading the weather service.
+     *
+     * @param WeatherService $weather The weather service instance.
+     */
     public function boot(WeatherService $weather)
     {
         $this->weather = $weather;
     }
 
-
+    /**
+     * Search for locations based on the set search text.
+     *
+     * TODO: Make updates to allow this function to be called frequently (keyup/debounce).
+     */
     public function search()
     {
-        global $globalLocations;
+        global $globalLocations; // TODO: remove, these since I removed the global variable declarations
         error_log("search called");
         if ($this->searchText) {
             error_log("searching for: " . $this->searchText);
             $this->locations = $this->weather->searchLocation($this->searchText);
-            $globalLocations = $this->locations;
+            $globalLocations = $this->locations;  // TODO: remove, ditto
             error_log("locations found: " . json_encode($globalLocations));
         } else {
+            // TODO: Can we do something with exceptions or other error handling to trigger user friendly messages?
             $this->locations = [];
         }
     }
 
+    /**
+     * Render the component view.
+     *
+     * @return \Illuminate\View\View The view for the component.
+     */
     public function render()
     {
         return view('livewire.weather-search', ['locations' => $this->locations]);
