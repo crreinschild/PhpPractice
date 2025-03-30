@@ -7,7 +7,7 @@ use App\Services\WeatherService;
 use Livewire\Component;
 
 /**
- * General weather component to display the weather forcast for a specific location.
+ * General weather component to display the weather forecast for a specific location.
  *
  * @package App\Livewire
  *
