@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Services\WeatherService;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 
 /**
@@ -48,11 +49,14 @@ class WeatherSearch extends Component
      * TODO: Find out why the location list is null (hint, this is likely a new instance when the function is called)
      */
     public function selectLocation($location) {
-        if(!$this->locations) {
-            error_log("No locations available");
+        if(Cache::has('locations')) {
+            $locations = Cache::get('locations');
+            Cache::forget('locations');
+            $location = $locations[$location];
+            Cache::put('location', $location);
+            error_log("Selected location: " . json_encode($location));
         } else {
-            $this->selected = $this->locations[$location];
-            error_log("Selected location: " . json_encode($this->selected));
+            error_log("No locations available");
         }
     }
 
@@ -99,6 +103,7 @@ class WeatherSearch extends Component
     {
         if ($this->searchText) {
             $this->locations = $this->weather->searchLocation($this->searchText);
+            Cache::put('locations', $this->locations);
         } else {
             // TODO: Can we do something with exceptions or other error handling to trigger user friendly messages?
             $this->locations = [];
