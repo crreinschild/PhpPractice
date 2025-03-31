@@ -58,11 +58,12 @@ class WeatherSearch extends Component
 
     /**
      * Check when properties are updated. This is used to detect when the user has changed the search text.
+     *
+     * Currently, if a user stops typing, it will trigger the search automatically. May be able to remove the button.
      */
     public function updated($property)
     {
         if ($property == 'searchText') {
-            error_log('trigger search?');
             $this->search();
         }
         if ($property == 'selected') {
@@ -74,12 +75,9 @@ class WeatherSearch extends Component
      * Constructor to initialize the weather service and locations.
      *
      * @param WeatherService $weather The weather service instance.
-     * @param array $locations The list of locations to search from. NOTE: This likely doesn't help as the code that
-     *   instantiates this component runs before any search is ever run. TODO: remove
      */
-    public function mount(WeatherService $weather, $locations = [])
+    public function mount(WeatherService $weather)
     {
-        $this->locations = $locations;
         $this->weather = $weather;
     }
 
@@ -96,27 +94,15 @@ class WeatherSearch extends Component
 
     /**
      * Search for locations based on the set search text.
-     *
-     * TODO: Make updates to allow this function to be called frequently (keyup/debounce).
      */
     public function search()
     {
-        global $globalLocations; // TODO: remove, these since I removed the global variable declarations
-        error_log("search called");
         if ($this->searchText) {
-            error_log("searching for: " . $this->searchText);
             $this->locations = $this->weather->searchLocation($this->searchText);
-            $globalLocations = $this->locations;  // TODO: remove, ditto
-            error_log("locations found: " . json_encode($globalLocations));
         } else {
             // TODO: Can we do something with exceptions or other error handling to trigger user friendly messages?
             $this->locations = [];
         }
-    }
-
-    public function getWeather()
-    {
-
     }
 
     /**
