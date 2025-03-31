@@ -45,15 +45,28 @@ class WeatherSearch extends Component
      * Function to handle the event that a user has selected a location from the list.
      * Read the value of the `selected` property, and pull the location with the same id in the array.
      *
-     * TODO: Bug: Update function to check that locations is not null
      * TODO: Find out why the location list is null (hint, this is likely a new instance when the function is called)
-     * TODO: Find out why `updatedSelected` didn't work; likely because `selected` was not updated in this instance.
      */
-    public function selectionChanged() {
-        if ($this->selected) {
-            error_log(json_encode($this->locations));
-            $selectedLocation = $this->locations[$this->selected];
-            error_log("selectionChanged: " . $selectedLocation);
+    public function selectLocation($location) {
+        if(!$this->locations) {
+            error_log("No locations available");
+        } else {
+            $this->selected = $this->locations[$location];
+            error_log("Selected location: " . json_encode($this->selected));
+        }
+    }
+
+    /**
+     * Check when properties are updated. This is used to detect when the user has changed the search text.
+     */
+    public function updated($property)
+    {
+        if ($property == 'searchText') {
+            error_log('trigger search?');
+            $this->search();
+        }
+        if ($property == 'selected') {
+            // TODO: Should I use this as the trigger to get weather?
         }
     }
 
@@ -99,6 +112,11 @@ class WeatherSearch extends Component
             // TODO: Can we do something with exceptions or other error handling to trigger user friendly messages?
             $this->locations = [];
         }
+    }
+
+    public function getWeather()
+    {
+
     }
 
     /**
