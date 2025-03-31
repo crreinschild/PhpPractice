@@ -12,6 +12,7 @@
 
             <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:border-gray-200 disabled:bg-gray-50 disabled:text-gray-500 disabled:shadow-none dark:disabled:border-gray-700  dark:disabled:bg-gray-800/20">Search</button>
 
+            <!-- Adapted from https://preline.co/docs/searchbox.html#html-example-in-dropdown -->
             <div class="absolute z-50 w-full mx-auto max-w-md bg-white rounded-xl shadow-xl dark:bg-neutral-800" style="display: {{!$locations ? 'none' : 'block'}}" >
                 <div class="max-h-125 p-2 overflow-y-auto overflow-hidden" data-hs-combo-box-output-items-wrapper="">
                     <div>
@@ -26,21 +27,4 @@
             </div>
         </div>
     </form>
-
-    <!-- -->
-
-
-
-
-
-    <div class="flex gap-4 mx-auto justify-center mt-4">
-        <div class="col-md-6">
-            <select wire:model="selected" wire:change="selectionChanged" class="form-control">
-                <option value="-1" selected>Choose Location</option>
-                @foreach ($locations as $location)
-                    <option value="{{$location->id}}">{{$location->city . ', ' . $location->country}}</option>
-                @endforeach
-            </select>
-        </div>
-    </div>
 </div>
