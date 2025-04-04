@@ -2,6 +2,15 @@
 
 namespace App\Models;
 
+/**
+ * WeatherReport Model
+ *
+ * Represents a weather report for a specific location, including various weather data points.
+ *
+ * TODO: Add more :D
+ *
+ * @package App\Models
+ */
 class WeatherReport
 {
     public $location;

@@ -2,6 +2,16 @@
 
 namespace App\Models;
 
+/**
+ * WeatherLocation Model
+ *
+ * Represents a location with its details such as city, country, latitude, and longitude.
+ *
+ * TODO: Expand this model to include more details about the location to assist the user in narrowing down the exact
+ *   location.
+ *
+ * @package App\Models
+ */
 class WeatherLocation
 {
     public $id;
