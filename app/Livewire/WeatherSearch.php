@@ -12,15 +12,6 @@ use Livewire\Component;
  * Handles the logic for searching for a location to get the weather forecast for. When a user sets the search text,
  * it will fetch a list of locations close in name to the specified text. The desired location can then be selected.
  *
- * ASSESSMENT NOTE: The search function of this component is functioning as expected, however, when selecting the
- * location, it would appear that it instantiates a new WeatherSearch component instead of resolving the original
- * instance; the one that contains the list of locations. I originally tried to pass the full location object by binding
- * the selected location on the <select> element, but I learned very quickly that Livewire only supports simple (string)
- * values via this binding. I did not have the heart to attempt to serialize the object into a base64 json object.
- * I, instead, followed up by attempting to pass the ID of the location, but to my dismay, there was no list waiting for
- * me. Ultimately, even if I got it working, the intent is to pass the selected location to the Weather component, and
- * I don't know what the correct way to do that is. In hindsight, I should have the Weather component be a parent, and
- * make the Search and the set of weather graphs and gauges be children.
  * TODO: Find the best practice for passing data/state between Livewire components.
  *   I bet it's something like creating a session-scoped data service to broker the data (maybe backed by a database to
  *   assist in caching and persistence).

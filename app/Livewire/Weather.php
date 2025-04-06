@@ -51,10 +51,6 @@ class Weather extends Component
 
     /**
      * Fetches the weather data for the selected location.
-     *
-     * ASSESSMENT NOTE: I tried setting the selected location to a global variable despite it clearly being a bad idea.
-     *   It didn't work anyway, so I hardcoded it to Raleigh so that I could demonstrate that it at least fetches the
-     *   weather data for a single location.
      */
     public function getWeather() {
         // TODO: Replace with the real proper way to get data from the WeatherSearch component.
